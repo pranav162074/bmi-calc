@@ -10,7 +10,7 @@ A simple BMI (Body Mass Index) calculator built using **HTML**, **CSS**, and **J
 
 ## 📸 Screenshot
 
-![BMI Calculator Screenshot](./bgimg2.jpeg)
+![BMI Calculator Screenshot](./projscrnshot.jpg)
 
 ## 💻 How to Run
 
