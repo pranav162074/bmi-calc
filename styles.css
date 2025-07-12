@@ -1,0 +1,108 @@
+body {
+    background-image: url('bgimg2.jpeg');
+    background-size: 100% 100%; /*Scales the image to cover the entire viewport while maintaining aspect ratio*/
+    background-repeat: no-repeat; /*Prevents the image from repeating*/
+    background-position: center; /*Keeps the image centered horizontally and vertically*/
+    background-attachment: fixed; /*Keeps the image fixed during scroll (optional, for a nice parallax effect)*/
+    text-align: center;
+    color: rgb(145, 76, 1);
+    font-family: 'Times New Roman', Times, serif;
+    overflow-x: hidden;
+}
+
+h1 {
+    padding-top: 20px;
+}
+
+h4, p {
+  font-size: 20px;
+}
+
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+/*If you shrink the screen, the form may overflow. so added this:*/
+input, select, #submitBtn {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input, select {
+  outline: none;
+}
+
+select, #submitBtn {
+    cursor: pointer;
+}
+
+input {
+    background-color: #C97E63;
+    border: 2px solid #ab6802;
+    height: 30px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 25px;
+}
+
+/*To remove dropdown number up and down*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+    color: rgb(22, 22, 22);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  background-color: #C97E63;
+  border: 2px solid #ab6802;
+  color: #1c1c1c;
+  border-radius: 25px;
+  padding: 10px 40px 10px 15px; /* right padding for the arrow */
+  margin-top: 5px;
+  font-size: 16px;
+  font-family: Geneva, sans-serif;
+
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ab6802" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+
+#submitBtn {
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  background-color: #aa6a52;
+  color: #fff5e0;
+  height: 40px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+  background-color: #c77a60;
+}
+

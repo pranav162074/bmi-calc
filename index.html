@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>BMI Calculator(for adults)</h1>
+    <form id="bmiForm">
+      <label for="weight">Enter weight:
+        <input type="number" id="weight" min="20" max="200" placeholder="(in kgs)" required>
+      </label>
+      <label for="height">Enter height:
+        <input type="number" id="height" min="110" max="280" placeholder="(in cm)" required>
+      </label>
+      <label for="age">Age:
+        <input type="number" id="age" step="1" min="16" max="120" placeholder="(Your age in years)" required>
+      </label>
+      <label for="sex">Sex:
+        <select id="sex">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </label>
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <div id="bmiResult"></div>
+
+    <script src="program.js"></script>
+  </div>
+</body>
+</html>
