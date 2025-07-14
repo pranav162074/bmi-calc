@@ -8,21 +8,22 @@
 </head>
 <body>
   <div class="container">
-    <h1>BMI Calculator(for adults)</h1>
+    <h1>BMI Calculator</h1>
     <form id="bmiForm">
       <label for="weight">Enter weight:
-        <input type="number" id="weight" min="20" max="200" placeholder="(in kgs)" required>
+        <input type="number" id="weight" min="10" max="300" placeholder="(in kgs)" required>
       </label>
       <label for="height">Enter height:
-        <input type="number" id="height" min="110" max="280" placeholder="(in cm)" required>
+        <input type="number" id="height" min="80" max="300" placeholder="(in cm)" required>
       </label>
       <label for="age">Age:
-        <input type="number" id="age" step="1" min="16" max="120" placeholder="(Your age in years)" required>
+        <input type="number" id="age" step="1" min="0" max="160" placeholder="(Your age in years)" required>
       </label>
       <label for="sex">Sex:
         <select id="sex">
           <option>Male</option>
           <option>Female</option>
+          <option>Other</option>
         </select>
       </label>
       <button type="submit" id="submitBtn">Submit</button>

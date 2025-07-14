@@ -1,36 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => { // <- This ensures the JavaScript code runs only after the whole HTML DOM (elements, structure) is loaded, preventing errors from trying to access elements before they exist.
-  const form = document.getElementById('bmiForm'); // <- Selects the HTML element with the ID bmiForm (which is your form for BMI input) and stores it in the form constant for further use.
-  const resultBox = document.getElementById('bmiResult'); // <- Selects the HTML element with ID bmiResult (where you will display the BMI result) and stores it in resultBox.
+document.addEventListener('DOMContentLoaded', () => { // Waits for the HTML to load completely before running JS.
+  const form = document.getElementById('bmiForm'); // Get the BMI form element by its ID.
+  const resultBox = document.getElementById('bmiResult'); // Get the result box where BMI output will be shown.
 
-  form.addEventListener('submit', (e) => { // <- Adds an event listener to the form that listens for the submit event (when the user clicks submit). The event object passed to the callback function, representing the submit event.
-    e.preventDefault(); // <- What it does: Prevents the default behaviour of the form submission, which would normally reload the page or navigate away. Why it's needed: Allows you to handle the form submission with JavaScript and display results dynamically without page refresh.
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevents page from reloading on form submission.
 
-    const weight = parseFloat(document.getElementById('weight').value); // <- Retrieves the value entered in the input with ID weight, converts it from a string to a floating-point number, and stores it in weight.
-    const heightCm = parseFloat(document.getElementById('height').value); // <- Retrieves the value entered in the input with ID height (assumed to be in cm), converts it to float, and stores it in heightCm.
-    const age = document.getElementById('age').value; // <- Retrieves the value of input with ID age as a string and stores it in age.
-    const sex = document.getElementById('sex').value; // <- Retrieves the value of input with ID sex (male/female/other) as a string and stores it in sex.
+    // Collect user input
+    const weight = parseFloat(document.getElementById('weight').value); // Get weight in kg and convert to float.
+    const heightCm = parseFloat(document.getElementById('height').value); // Get height in cm and convert to float.
+    const age = parseInt(document.getElementById('age').value); // Get age and convert to integer.
+    if (age < 2) {
+      resultBox.innerHTML = "<p>BMI is not applicable for babies under 2 years old. Please consult a pediatrician.</p>";
+      return; // <- Stop the function so BMI is not calculated
+    }
+    const sex = document.getElementById('sex').value; // Get selected sex (male/female/other).
 
+    // Check for valid weight and height
     if (isNaN(weight) || isNaN(heightCm)) {
       resultBox.innerHTML = "<p>Please enter valid numbers for weight and height.</p>";
-      return;
-    } // <- What it does: Checks if either weight or heightCm is Not a Number (NaN) after parsing. If true: Displays an error message inside resultBox asking for valid input and stops further code execution using return.
-
-    const heightM = heightCm / 100;
-    const bmi = weight / (heightM * heightM);
-
-    let category = ''; // <- Declares a variable category to store the BMI category string later.
-    if (bmi < 18.5) {
-      category = 'Underweight';
-    } else if (bmi < 25) {
-      category = 'Normal weight';
-    } else if (bmi < 30) {
-      category = 'Overweight';
-    } else {
-      category = 'Obese';
+      return; // Exit if invalid input
     }
 
+    // Convert height to meters
+    const heightM = heightCm / 100;
+
+    // Calculate BMI
+    const bmi = weight / (heightM * heightM);
+
+    let category = ''; // Declares a variable named category. To store BMI category based on age and sex
+
+    if (age < 20) {
+      // For users under 20, BMI interpretation is based on percentiles
+      // Simplified version: this should ideally use WHO or CDC BMI-for-age percentiles data
+      // We'll simulate it based on average tendencies
+
+      if (sex === 'male') {
+        if (bmi < 16.5) {
+          category = 'Underweight (young male)';
+        } else if (bmi < 22) {
+          category = 'Healthy weight (young male)';
+        } else if (bmi < 26) {
+          category = 'Overweight (young male)';
+        } else {
+          category = 'Obese (young male)';
+        }
+      } else if (sex === 'female') {
+        if (bmi < 16) {
+          category = 'Underweight (young female)';
+        } else if (bmi < 21.5) {
+          category = 'Healthy weight (young female)';
+        } else if (bmi < 25.5) {
+          category = 'Overweight (young female)';
+        } else {
+          category = 'Obese (young female)';
+        }
+      } else {
+        // For 'other' or unspecified
+        if (bmi < 16.2) {
+          category = 'Underweight';
+        } else if (bmi < 21.7) {
+          category = 'Healthy weight';
+        } else if (bmi < 25.7) {
+          category = 'Overweight';
+        } else {
+          category = 'Obese';
+        }
+      }
+
+    } else {
+      // For adults 20 and older, use standard BMI categories
+      if (bmi < 18.5) {
+        category = 'Underweight';
+      } else if (bmi < 25) {
+        category = 'Normal weight';
+      } else if (bmi < 30) {
+        category = 'Overweight';
+      } else {
+        category = 'Obese';
+      }
+    }
+
+    // Display the result
     resultBox.innerHTML = `
       <h4>Your BMI: ${bmi.toFixed(2)}</h4>
-      <p>Category: ${category}</p>`; // <- What it does: Sets the innerHTML of the resultBox element to show: BMI value (rounded to 2 decimal places using toFixed(2)). BMI category (Underweight, Normal weight, Overweight, or Obese).
+      <p>Category: ${category}</p>
+    `; // BMI shown with 2 decimal places so bmi.toFixed(2).
   });
 });
+

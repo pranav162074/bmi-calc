@@ -45,6 +45,10 @@ input, select {
   outline: none;
 }
 
+input:focus, select:focus {
+  border: 3px solid brown;
+}
+
 select, #submitBtn {
     cursor: pointer;
 }
