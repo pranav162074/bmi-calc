@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => { // Waits for the HTML to l
     // Display the result
     resultBox.innerHTML = `
       <h4>Your BMI: ${bmi.toFixed(2)}</h4>
-      <p>Category: ${category}</p>
+      <p class="bmi-category">Category: ${category}</p>
     `; // BMI shown with 2 decimal places so bmi.toFixed(2).
   });
 });
